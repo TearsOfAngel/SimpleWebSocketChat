@@ -27,9 +27,6 @@ public class ChatController {
         return chatMessage;
     }
 
-    /**
-     * Adds username into websocket session
-     */
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
@@ -46,13 +43,4 @@ public class ChatController {
         List<ChatMessage> messages = messageService.getAllMessages();
         return ResponseEntity.ok(messages);
     }
-
-    //TODO Правильный ли путь гетмаппинга
-    @GetMapping("/messages/{username}")
-    public ResponseEntity<List<ChatMessage>> filterMessagesByUser(@PathVariable String username) {
-        List<ChatMessage> messages = messageService.filter(username);
-        return ResponseEntity.ok(messages);
-    }
-
-
 }

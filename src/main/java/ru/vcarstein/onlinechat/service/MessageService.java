@@ -22,8 +22,4 @@ public class MessageService {
     public List<ChatMessage> getAllMessages() {
         return messageRepository.findAll();
     }
-
-    public List<ChatMessage> filter(String username) {
-        return messageRepository.findBySender(username);
-    }
 }
