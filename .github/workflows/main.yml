@@ -3,7 +3,7 @@ name: Maven Package
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
   build:
@@ -20,3 +20,4 @@ jobs:
           
       - name: Build with Maven
         run: mvn clean install
+#comment for testing
