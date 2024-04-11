@@ -1,23 +1,34 @@
+version: "3.8"
+
 services:
-  mongodb:
-    image: mongo
-    container_name: mongo_db
+
+  mongo-db:
+    image: mongo:4.0.11
+    container_name: mongo-db
+    restart: always
     ports:
-      - 45000:27017
+      - "27017:27017"
     volumes:
       - mongo:/data
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=vcarstein
-      - MONGO_INITDB_ROOT_PASSWORD=123456
   mongo-express:
     image: mongo-express
     container_name: mongo_express
     restart: always
     ports:
-      - 8081:8081
+      - "8081:8081"
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=vcarstein
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=123456
-      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_SERVER=mongo-db
+  chat-app:
+    build: .
+    container_name: online_chat
+    restart: always
+    ports:
+      - "7777:7777"
+    links:
+      - mongo-db
+    depends_on:
+      - mongo-db
+      - mongo-express
 volumes:
   mongo: {}
+

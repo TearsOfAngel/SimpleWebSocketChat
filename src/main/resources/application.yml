@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: chat
+      host: mongo-db
+      port: 27017
+server:
+  port: 7777
