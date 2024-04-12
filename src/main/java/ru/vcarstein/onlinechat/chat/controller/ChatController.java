@@ -43,7 +43,4 @@ public class ChatController {
         List<ChatMessage> messages = messageService.getAllMessages();
         return ResponseEntity.ok(messages);
     }
-
-
-    //Test comment
 }
